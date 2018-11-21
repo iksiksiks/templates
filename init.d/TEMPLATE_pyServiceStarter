@@ -13,20 +13,21 @@ NAME=SCRIPTNAME
 DESC="Python service starter"
 
 cmd="/../../scriptname.py"
+usr="USER"
 
 case "$1" in
 start)
-sudo -u USER -i screen -dmS SCRIPTNAME.start python $cmd
+sudo -u $usr -i screen -dmS SCRIPTNAME.start python $cmd
 echo "Service started"
 ;;
 stop)
-sudo -u openhabian -i screen -S SCRIPTNAME.start -X quit
+sudo -u $usr -i screen -S SCRIPTNAME.start -X quit
 echo "Process killed"
 ;;
 restart)
-sudo -u USER -i screen -S SCRIPTNAME.start -X quit
+sudo -u $usr -i screen -S SCRIPTNAME.start -X quit
 echo "Killed" &
-sudo -u USER -i screen -dmS SCRIPTNAME.start python $cmd
+sudo -u $usr -i screen -dmS SCRIPTNAME.start python $cmd
 echo "Service restarted"
 ;;
 esac
